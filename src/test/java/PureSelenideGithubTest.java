@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class BaseGithubTest {
+public class PureSelenideGithubTest {
     private final static String Login = ConfigHelper.getLogin();
     private final static String Password = ConfigHelper.getPassword();
 
@@ -21,7 +21,6 @@ public class BaseGithubTest {
     void baseGithubTest() {
         open("https://github.com");
         $("[href='/login']").click();
-        System.out.println(Login);
         $("#login_field").val(Login);
         $("#password").val(Password);
         $("[value=\"Sign in\"]").click();
