@@ -14,12 +14,10 @@ import static io.qameta.allure.Allure.step;
 public class LambdaGithubTest {
     private final static String Login = ConfigHelper.getLogin();
     private final static String Password = ConfigHelper.getPassword();
-
     private final static String Link = "https://github.com/";
     private final static String Repository = "qa_hm_3";
     private final static String Issues_Title = "Homework";
     private final static String Issues_Comment = "Write a test for creating an Issue in the repository through the Web interface.";
-
 
     @Test
     void stepGithubTest() {
@@ -73,6 +71,5 @@ public class LambdaGithubTest {
             $(".logout-form").click();
             $("main").shouldHave(text("Where the world"));
         });
-
     }
 }

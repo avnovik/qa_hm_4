@@ -11,11 +11,9 @@ import static com.codeborne.selenide.Selenide.*;
 public class PureSelenideGithubTest {
     private final static String Login = ConfigHelper.getLogin();
     private final static String Password = ConfigHelper.getPassword();
-
     private final static String Repository = "qa_hm_3";
     private final static String Issues_Title = "Homework";
     private final static String Issues_Comment = "Write a test for creating an Issue in the repository through the Web interface.";
-
 
     @Test
     void baseGithubTest() {
@@ -29,7 +27,6 @@ public class PureSelenideGithubTest {
         $(byText("Your repositories")).click();
         $(byText(Repository)).click();
         $("[data-content=\"Issues\"]").click();
-
         sleep(250);  // я хз но без этой паузы он не видит кнопку "New issue", был бы рад обьяснению почему.
         $(".repository-content .btn-primary").shouldBe(visible).click();
         $("#issue_title").val(Issues_Title);
@@ -43,7 +40,6 @@ public class PureSelenideGithubTest {
         $("[role=\"menuitemcheckbox\"]").sendKeys(Keys.ESCAPE);
         $$("button[type=\"submit\"]").find(text("Submit new issue")).click();
         $(".gh-header-show").shouldHave(text(Issues_Title));
-
 
         $(byText("Delete issue")).click();
         $(byText("Delete this issue")).click();
