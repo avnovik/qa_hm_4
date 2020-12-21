@@ -29,6 +29,7 @@ public class PureSelenideGithubTest {
         $(byText("Your repositories")).click();
         $(byText(Repository)).click();
         $("[data-content=\"Issues\"]").click();
+
         sleep(250);  // я хз но без этой паузы он не видит кнопку "New issue", был бы рад обьяснению почему.
         $(".repository-content .btn-primary").shouldBe(visible).click();
         $("#issue_title").val(Issues_Title);
@@ -47,9 +48,8 @@ public class PureSelenideGithubTest {
         $(byText("Delete issue")).click();
         $(byText("Delete this issue")).click();
         $(".repository-content").shouldNotHave(text(Issues_Title));
-
-
-
-        //System.out.println();
+        $("[aria-label=\"View profile and more\"]").click();
+        $(".logout-form").click();
+        $("main").shouldHave(text("Where the world"));
     }
 }
