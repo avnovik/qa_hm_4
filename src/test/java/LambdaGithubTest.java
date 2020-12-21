@@ -1,6 +1,7 @@
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.conditions.Visible;
 import config.ConfigHelper;
+import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
@@ -14,7 +15,7 @@ public class LambdaGithubTest {
     private final static String Login = ConfigHelper.getLogin();
     private final static String Password = ConfigHelper.getPassword();
 
-    private final static String Link = "https://github.com";
+    private final static String Link = "https://github.com/";
     private final static String Repository = "qa_hm_3";
     private final static String Issues_Title = "Homework";
     private final static String Issues_Comment = "Write a test for creating an Issue in the repository through the Web interface.";
@@ -22,6 +23,8 @@ public class LambdaGithubTest {
 
     @Test
     void stepGithubTest() {
+        Allure.story("Test with Lambda");
+        Allure.parameter("Repository", Link + Repository);
 
         step("Successful login on the main page", () -> {
             open(Link);
@@ -32,7 +35,7 @@ public class LambdaGithubTest {
             $("body").shouldHave(text(Login));
         });
 
-        step("Find repository" + Repository, (step) -> {
+        step("Find repository: " + Repository, (step) -> {
             step.parameter("name", Repository);
 
             $("[aria-label=\"View profile and more\"]").click();
@@ -60,7 +63,7 @@ public class LambdaGithubTest {
             $(".gh-header-show").shouldHave(text(Issues_Title));
         });
 
-        step("Delete an Issue:" + Issues_Title, (step) -> {
+        step("Delete an Issue: " + Issues_Title, (step) -> {
             step.parameter("name", Issues_Title);
 
             $(byText("Delete issue")).click();
